@@ -1,13 +1,17 @@
-/*
+/* Copyright (C) 2018 Chupligin Sergey <neochapay@gmail.com>
  * Copyright 2011 Intel Corporation.
  *
  * This program is licensed under the terms and conditions of the
- * Apache License, version 2.0.  The full text of the Apache License is at 	
+ * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import QtQuick 2.0
-import com.nokia.meego 2.0
+import QtQuick 2.6
+
+import QtQuick.Controls 1.0
+import QtQuick.Controls.Nemo 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
+
 import org.nemomobile.email 0.1
 
 Page {
@@ -18,40 +22,41 @@ Page {
     property alias interactive: listView.interactive
     property alias model: listView.model
 
-    PageHeader {
-        id: pageHeader
-        color: "#0066ff"
-        text: "Mail"
-
-        BusyIndicator {
-            visible: window.refreshInProgress
-            running: window.refreshInProgress
-            anchors.right: parent.right
-            anchors.rightMargin: UiConstants.DefaultMargin
-            anchors.verticalCenter: parent.verticalCenter
-        }
+    headerTools:  HeaderToolsLayout {
+        id: hTools
+        title: qsTr("Mail")
+        tools: [
+            ToolButton{
+                iconSource: "image://theme/refresh"
+                onClicked: {
+                    if (window.refreshInProgress == true) {
+                        emailAgent.cancelSync();
+                        window.refreshInProgress = false;
+                    } else {
+                        emailAgent.accountsSync();
+                        window.refreshInProgress = true;
+                    }
+                }
+            }
+        ]
     }
 
-    ViewPlaceholder {
-        text: "No accounts configured"
-        enabled: listView.count == 0
+    Label {
+        text: qsTr("No accounts configured")
+        visible: listView.count == 0
+        anchors.centerIn: parent
     }
 
     ListView {
         id: listView
-        anchors.top: pageHeader.bottom
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
+        anchors.fill: parent
         clip: true
         model: mailAccountListModel
 
         onCurrentIndexChanged: container.topicTriggered(currentIndex)
 
-        delegate: ListDelegate {
+        delegate: ListViewItemWithActions {
             id: accountItem
-            x: UiConstants.DefaultMargin
-            width: ListView.view.width - UiConstants.DefaultMargin * 2
 
             Component.onCompleted: {
                 if (index == 0) {
@@ -60,21 +65,24 @@ Page {
                 }
             }
 
-            titleText: emailAddress + " - " + displayName  //i18n ok
+            label: formatLabel()
+            description: emailAddress
+            iconVisible: false
 
-            CountBubble {
-                id: unreadImage
-                anchors.right: goToFolderListIcon.left 
-                anchors.rightMargin:10 
-                anchors.verticalCenter: parent.verticalCenter
-                value: unreadCount
-            }
+            function formatLabel()
+            {
+                var label = ""
+                if(displayName == emailAddress)
+                {
+                    var label_r = displayName.split("@");
+                    label += qsTr("Mail on")+" "+label_r[1];
+                }
 
-            MoreIndicator {
-                id: goToFolderListIcon
-                anchors.right: parent.right
-                anchors.rightMargin: UiConstants.DefaultMargin
-                anchors.verticalCenter: parent.verticalCenter
+                if(unreadCount > 0)
+                {
+                    label += " ("+unreadCount+")"
+                }
+                return label
             }
 
             onClicked: {
@@ -90,17 +98,5 @@ Page {
                 pageStack.push(Qt.resolvedUrl("FolderListView.qml"))
             }
         }
-    }
-
-    tools: ToolBarLayout {
-        ToolIcon { iconId: "icon-m-toolbar-refresh"; onClicked: {
-            if (window.refreshInProgress == true) {
-                emailAgent.cancelSync();
-                window.refreshInProgress = false;
-            } else {
-                emailAgent.accountsSync();
-                window.refreshInProgress = true;
-            }
-        } }
     }
 }

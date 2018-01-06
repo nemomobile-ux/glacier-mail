@@ -1,10 +1,12 @@
-include(../common.pri)
-TARGET = qmlmail
+TARGET = glacier-mail
 TEMPLATE = app
 QT += qml quick webkit network
 
-CONFIG += link_pkgconfig \
-    mobility
+CONFIG += link_pkgconfig
+
+PKGCONFIG += glacierapp
+
+LIBS += -lglacierapp
 
 packagesExist(mlite) {
     PKGCONFIG += mlite
@@ -13,20 +15,12 @@ packagesExist(mlite) {
     warning("mlite not available. Some functionality may not work as expected.")
 }
 
-packagesExist(qdeclarative5-boostable) {
-    message("Building with qdeclarative5-boostable support")
-    DEFINES += HAS_BOOSTER
-    PKGCONFIG += qdeclarative5-boostable
-} else {
-    warning("qdeclarative5-boostable not available; startup times will be slower")
-}
-
-
-OBJECTS_DIR = .obj
-MOC_DIR = .moc
-RESOURCES += res.qrc
-
 QML_FILES = qml/*.qml
+
+
+qml.files = qml/*
+qml.path = /usr/share/glacier-mail/qml
+INSTALLS += qml
 
 OTHER_FILES += $${QML_FILES}
 

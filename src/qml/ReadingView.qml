@@ -1,4 +1,4 @@
-/*
+/* Copyright (C) 2018 Chupligin Sergey <neochapay@gmail.com>
  * Copyright 2011 Intel Corporation.
  *
  * This program is licensed under the terms and conditions of the
@@ -6,12 +6,21 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import QtQuick 2.0
-import com.nokia.meego 2.0
+import QtQuick 2.6
+
+import QtQuick.Controls 1.0
+import QtQuick.Controls.Nemo 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
+
 import org.nemomobile.email 0.1
 
 Page {
     id: container
+    headerTools:  HeaderToolsLayout {
+        id: hTools
+        title: window.mailSubject
+        showBackButton: true
+    }
 
     Connections {
         target: messageListModel
@@ -24,17 +33,18 @@ Page {
         id: flick
         anchors.fill: parent
 
-        contentWidth: childrenRect.width
+        contentWidth: parent.width
         contentHeight: contentItem.childrenRect.height
 
         Rectangle {
             id: fromRect
             width: flick.width
-            height: 43
+            height: Theme.itemHeightLarge
+            color: "transparent"
 
             Row {
                 spacing: 5
-                height: 43
+                height: parent.height
                 anchors.left: parent.left
                 anchors.leftMargin: 3
                 anchors.topMargin: 1
@@ -42,7 +52,6 @@ Page {
                     width: subjectLabel.width
                     text: qsTr("From:")
                     anchors.verticalCenter: parent.verticalCenter
-                    horizontalAlignment: Text.AlignRight
                 }
                 EmailAddress {
                     anchors.verticalCenter: parent.verticalCenter
@@ -57,11 +66,11 @@ Page {
             anchors.top: fromRect.bottom
             anchors.topMargin: 1
             width: flick.width
-            height: 43
-
+            height: Theme.itemHeightLarge
+            color: "transparent"
             Row {
                 spacing: 5
-                height: 43
+                height: parent.height
                 anchors.top: parent.top
                 anchors.left: parent.left
                 anchors.leftMargin: 3
@@ -69,7 +78,6 @@ Page {
                     width: subjectLabel.width
                     id: toLabel
                     text: qsTr("To:")
-                    horizontalAlignment: Text.AlignRight
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 EmailAddress {
@@ -86,11 +94,12 @@ Page {
             width: flick.width
             anchors.topMargin: 1
             clip: true
-            height: 43
+            height: Theme.itemHeightLarge
+            color: "transparent"
 
             Row {
                 spacing: 5
-                height: 43
+                height: parent.height
                 anchors.left: parent.left
                 anchors.leftMargin: 3
                 Label {
@@ -101,21 +110,21 @@ Page {
                 Label {
                     width: subjectRect.width - subjectLabel.width - 10
                     text: window.mailSubject
-                    anchors.verticalCenter: parent.verticalCenter
                     elide: Text.ElideRight
+                    anchors.verticalCenter: parent.verticalCenter
                 }
             }
         }
 
         Rectangle {
             id: attachmentRect
-            anchors.top: subjectRect.bottom
-            anchors.topMargin: 1
-            anchors.left: parent.left
-            anchors.right: parent.right
+            anchors{
+                top: subjectRect.bottom
+            }
             width: flick.width
-            height: 41
+            height: Theme.itemHeightLarge
             opacity: (window.numberOfMailAttachments > 0) ? 1 : 0
+            color: "transparent"
             AttachmentView {
                 height: parent.height
                 width: parent.width
@@ -130,11 +139,15 @@ Page {
 
         TextArea {
             id: edit
-            anchors.top: (window.numberOfMailAttachments > 0) ? attachmentRect.bottom : subjectRect.bottom
-            anchors.topMargin: UiConstants.DefaultMargin
-            anchors.left: parent.left
-            anchors.leftMargin: UiConstants.DefaultMargin
-            width: flick.width - (UiConstants.DefaultMargin * 2)
+
+            anchors{
+                top: (window.numberOfMailAttachments > 0) ? attachmentRect.bottom : subjectRect.bottom
+                topMargin: Theme.itemSpacingSmall
+                left: parent.left
+                leftMargin: Theme.itemSpacingSmall
+            }
+
+            width: flick.width - Theme.itemSpacingSmall*2
             wrapMode: TextEdit.Wrap
             readOnly: true
             text: window.mailBody
@@ -143,11 +156,10 @@ Page {
     }
 
     ScrollDecorator {
-        flickableItem: flick
+        flickable: flick
     }
 
-    tools: ToolBarLayout {
-        ToolIcon { iconId: "toolbar-back"; onClicked: { pageStack.pop(); }  }
+    /*tools: ToolBarLayout {
         ToolIcon { iconId: "toolbar-view-menu" ; onClicked: pageStack.openDialog(Qt.resolvedUrl("MessageContextMenu.qml")) }
-    }
+    }*/
 }

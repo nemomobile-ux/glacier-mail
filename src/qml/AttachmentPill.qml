@@ -1,4 +1,4 @@
-/*
+/* Copyright (C) 2018 Chupligin Sergey <neochapay@gmail.com>
  * Copyright 2011 Intel Corporation.
  *
  * This program is licensed under the terms and conditions of the
@@ -6,8 +6,12 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import QtQuick 2.0
-import com.nokia.meego 2.0
+import QtQuick 2.6
+
+import QtQuick.Controls 1.0
+import QtQuick.Controls.Nemo 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
+
 
 Item {
     id: pill
@@ -19,8 +23,8 @@ Item {
 
     signal longPress (string uri, int mouseX, int mouseY, int mIndex);
 
-    width: leftImage.width + centreImage.width + rightImage.width
-    height: centreImage.height
+    width: parent.width
+    height: Theme.itemHeightSmall
 
     onUriChanged: {
         name = uri.slice (uri.lastIndexOf ('/') + 1);
@@ -28,41 +32,34 @@ Item {
 
     Image {
         id: leftImage
-        anchors.left: parent.left
-        source: "image://theme/email/btn_attachment_left"
-    }
-
-    Image {
-        id: centreImage
-        anchors.left: leftImage.right
-        width: text.width
-        fillMode: Image.TileHorizontally
-        source: "image://theme/email/btn_attachment_middle"
-
-        Text {
-            id: text
-            anchors.verticalCenter: parent.verticalCenter
-            text: name
-            font.pixelSize: theme.fontPixelSizeMedium
-            color: theme.fontColorNormal
+        anchors{
+            left: parent.left
+            verticalCenter: parent.verticalCenter
         }
+        source: "image://theme/file-o"
+        height: parent.height*0.8
+        width: height
     }
 
-    Image {
-        id: rightImage
-        anchors.right: parent.right
-        source: "image://theme/email/btn_attachment_right"
+    Label {
+        id: text
+        anchors{
+            left: leftImage.right
+            leftMargin: Theme.itemSpacingSmall
+            verticalCenter: parent.verticalCenter
+        }
+        text: name
     }
 
     MouseArea {
         anchors.fill: parent
 
-        onPressAndHold: {
+/*        onPressAndHold: {
             var map = mapToItem(topItem.topItem , mouseX, mouseY);
             mX = map.x;
             mY = map.y;
             pill.longPress (uri, mX, mY, index);
-        }
+        }*/
     }
 }
 

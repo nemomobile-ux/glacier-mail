@@ -1,17 +1,52 @@
-/*
+/* Copyright (C) 2018 Chupligin Sergey <neochapay@gmail.com>
  * Copyright 2011 Intel Corporation.
  *
  * This program is licensed under the terms and conditions of the
- * Apache License, version 2.0.  The full text of the Apache License is at 	
+ * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import QtQuick 2.0
-import com.nokia.meego 2.0
+import QtQuick 2.6
+
+import QtQuick.Controls 1.0
+import QtQuick.Controls.Nemo 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
+
 import org.nemomobile.email 0.1
 
 Page {
     id: folderListContainer
+
+    headerTools:  HeaderToolsLayout {
+        id: hTools
+        title: currentAccountDisplayName + " " + currentFolderName
+        showBackButton: true
+
+        tools: [
+            ToolButton{
+                iconSource: "image://theme/refresh"
+                onClicked: {
+                    // TODO: a spinner in the PageHeader would be neat
+                    if (window.refreshInProgress == true) {
+                        emailAgent.cancelSync();
+                        window.refreshInProgress = false;
+                    } else {
+                        emailAgent.synchronize(window.currentMailAccountId);
+                        window.refreshInProgress = true;
+                    }
+                }
+            },
+            ToolButton{
+                iconSource: "image://theme/plus"
+                onClicked: {
+                    mailAttachmentModel.clear();
+                    window.composeInTextMode = true;
+                    pageStack.push(Qt.resolvedUrl("ComposerSheet.qml"))
+                }
+            }
+
+        ]
+    }
 
     Component.onCompleted: {
         mailFolderListModel.setAccountKey (currentMailAccountId);
@@ -59,41 +94,27 @@ Page {
     function isDraftFolder()
     {
         return false;
-//        return folderListView.pageTitle.indexOf( qsTr("Drafts") ) != -1 ;
+        //        return folderListView.pageTitle.indexOf( qsTr("Drafts") ) != -1 ;
     }
 
-    PageHeader {
-        id: pageHeader
-        color: "#0066ff"
-        text: currentAccountDisplayName + " " + currentFolderName
-
-        BusyIndicator {
-            visible: window.refreshInProgress
-            running: window.refreshInProgress
-            anchors.right: parent.right
-            anchors.rightMargin: UiConstants.DefaultMargin
-            anchors.verticalCenter: parent.verticalCenter
-        }
-
+    /*PageHeader {
         MouseArea {
             anchors.fill: parent
             onClicked: {
                 pageStack.openDialog(Qt.resolvedUrl("FolderSelectionDialog.qml"))
             }
         }
-    }
+    }*/
 
-    ViewPlaceholder {
-        text: qsTr ("No messages in this folder")
-        enabled: messageListView.count == 0
+    Label {
+        text: qsTr("No messages in this folder")
+        visible: messageListView.count == 0
+        anchors.centerIn: parent
     }
 
     ListView {
         id: messageListView
-        anchors.top: pageHeader.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
+        anchors.fill: parent
         clip: true
         cacheBuffer: height
         model: messageListModel
@@ -110,10 +131,10 @@ Page {
                 height: 45
                 width: 300
                 text: {
-                     if(gettingMoreMessages)
-                         return  qsTr("Getting more messages")
-                     else
-                         return  qsTr("Get more messages")
+                    if(gettingMoreMessages)
+                        return  qsTr("Getting more messages")
+                    else
+                        return  qsTr("Get more messages")
                 }
                 onClicked: {
                     gettingMoreMessages = true;
@@ -122,17 +143,24 @@ Page {
             }
         }
 
-        delegate: ListDelegate {
+        delegate: ListViewItemWithActions {
             id: dinstance
-            x: UiConstants.DefaultMargin
-            width: ListView.view.width - UiConstants.DefaultMargin * 2
+            icon: readStatus ? "image://theme/envelope-open-o" : "image://theme/envelope-o"
+            label: senderDisplayName != "" ? senderDisplayName : senderEmailAddress
+            description:  subject
 
-            titleText: senderDisplayName != "" ? senderDisplayName : senderEmailAddress
-            titleWeight: readStatus ? Font.Normal : Font.Bold
-            subtitleText:  subject
-
-            // TODO: attachments icon, logic:
-            // opacity: numberOfAttachments ? 1 : 0
+            Image{
+                id: attachIcon
+                visible: numberOfAttachments
+                source: "image://theme/paperclip"
+                height: parent.height/3
+                width: height
+                anchors{
+                    left: parent.left
+                    leftMargin: height/2
+                    top: parent.top
+                }
+            }
 
             onClicked: {
                 if (inSelectMode)
@@ -172,44 +200,25 @@ Page {
 
                     if ( isDraftFolder() )
                     {   window.editableDraft= true
-        window.addPage(composer);
+                        window.addPage(composer);
                     }
                     else
                         pageStack.push(Qt.resolvedUrl("ReadingView.qml"))
 
                 }
             }
-            onPressAndHold: {
+            /*onPressAndHold: {
                 if (inSelectMode)
                     return;
                 window.mailId = messageId;
                 window.mailReadFlag = readStatus;
                 window.currentMessageIndex = index;
                 pageStack.openDialog(Qt.resolvedUrl("MessageContextMenu.qml"))
-            }
+            }*/
         }
 
         ScrollDecorator {
-            flickableItem: parent
+            flickable: parent
         }
-    }
-
-    tools: ToolBarLayout {
-        ToolIcon { iconId: "toolbar-back"; onClicked: { pageStack.pop(); }  }
-        ToolIcon { iconId: "toolbar-add"; onClicked: {
-            mailAttachmentModel.clear();
-            window.composeInTextMode = true;
-            pageStack.openSheet(Qt.resolvedUrl("ComposerSheet.qml"))
-        } }
-        ToolIcon { iconId: "icon-m-toolbar-refresh"; onClicked: {
-            // TODO: a spinner in the PageHeader would be neat
-            if (window.refreshInProgress == true) {
-                emailAgent.cancelSync();
-                window.refreshInProgress = false;
-            } else {
-                emailAgent.synchronize(window.currentMailAccountId);
-                window.refreshInProgress = true;
-            }
-        } }
     }
 }

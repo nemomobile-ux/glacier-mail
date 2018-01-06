@@ -1,15 +1,18 @@
-include(common.pri)
 TEMPLATE = subdirs 
 CONFIG += ordered
 SUBDIRS += src
 
-desktop.files += qmlmail.desktop
+desktop.files += glacier-mail.desktop
 desktop.path += $$INSTALL_ROOT/usr/share/applications/
 
 INSTALLS += desktop
 
+DISTFILES += \
+    rpm/*
+
+
 TRANSLATIONS += *.qml settings/*.qml settings/*.js
-PROJECT_NAME = qmlmail
+PROJECT_NAME = glacier-mail
 
 dist.commands += rm -fR $${PROJECT_NAME}-$${VERSION} &&
 dist.commands += git clone . $${PROJECT_NAME}-$${VERSION} &&

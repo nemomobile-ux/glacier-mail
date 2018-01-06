@@ -1,4 +1,4 @@
-/*
+/* Copyright (C) 2018 Chupligin Sergey <neochapay@gmail.com>
  * Copyright 2011 Intel Corporation.
  *
  * This program is licensed under the terms and conditions of the
@@ -6,8 +6,12 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import QtQuick 2.0
-import com.nokia.meego 2.0
+import QtQuick 2.6
+
+import QtQuick.Controls 1.0
+import QtQuick.Controls.Nemo 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
+
 import org.nemomobile.email 0.1
 import QtWebKit 3.0
 import Qt.labs.gestures 2.0

@@ -1,19 +1,28 @@
-/*
+/* Copyright (C) 2018 Chupligin Sergey <neochapay@gmail.com>
  * Copyright 2011 Intel Corporation.
  *
  * This program is licensed under the terms and conditions of the
- * Apache License, version 2.0.  The full text of the Apache License is at 	
+ * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import QtQuick 2.0
-import com.nokia.meego 2.0
+import QtQuick 2.6
+
+import QtQuick.Controls 1.0
+import QtQuick.Controls.Nemo 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
+
 import org.nemomobile.email 0.1
 
-Sheet {
+Page {
     id: composerPage
-    acceptButtonText: qsTr("Send")
-    rejectButtonText: qsTr("Discard")
+
+    headerTools:  HeaderToolsLayout {
+        id: hTools
+        title: qsTr("New message")
+        showBackButton: true
+    }
+
     property alias quotedBody: composer.quotedBody
     property alias subject: header.subject
     property alias attachmentsModel: header.attachmentsModel
@@ -53,13 +62,13 @@ Sheet {
     function setMessageDetails(messageID, replyToAll) {
         var dateline = qsTr ("On %1 %2 wrote:").arg(messageListModel.timeStamp (messageID)).arg(messageListModel.mailSender (messageID));
 
-//        if (window.mailHtmlBody != "") {
-//            window.composeInTextMode = false;
-//            composer.setQuotedHtmlBody(dateline, messageListModel.htmlBody(messageID))
-//        } else {
-            window.composeInTextMode = true;
-            composer.quotedBody = "\n" + dateline + "\n" + messageListModel.quotedBody (messageID); //i18n ok
-//        }
+        //        if (window.mailHtmlBody != "") {
+        //            window.composeInTextMode = false;
+        //            composer.setQuotedHtmlBody(dateline, messageListModel.htmlBody(messageID))
+        //        } else {
+        window.composeInTextMode = true;
+        composer.quotedBody = "\n" + dateline + "\n" + messageListModel.quotedBody (messageID); //i18n ok
+        //        }
 
         attachmentsModel.clear();
         composer.attachmentsModel = attachmentsModel;
@@ -101,10 +110,10 @@ Sheet {
         }
     }
 
-    content: FocusScope {
+    FocusScope {
         id: composer
         focus:  true
-	anchors.fill: parent
+        anchors.fill: parent
 
         property string quotedBody: "";
 
@@ -138,10 +147,12 @@ Sheet {
             id: header
             z: 1000
 
-            anchors.top: parent.top
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.margins: UiConstants.DefaultMargin
+            anchors{
+                top: parent.top
+                left: parent.left
+                right: parent.right
+                margins: Theme.itemSpacingSmall
+            }
 
             toModel: ListModel {
             }
@@ -156,7 +167,7 @@ Sheet {
             accountsModel: mailAccountListModel
         }
 
-/*
+        /*
         HtmlField {
             id: htmlEditPane
             anchors.fill: parent
@@ -175,11 +186,13 @@ Sheet {
 */
         Rectangle {
             id: editorBackground
-            anchors.top: header.bottom
-            anchors.topMargin: UiConstants.DefaultMargin
-            anchors.bottom: parent.bottom
-            anchors.left: parent.left
-            anchors.right: parent.right
+            anchors{
+                top: header.bottom
+                topMargin: Theme.itemSpacingSmall
+                bottom: parent.bottom
+                left: parent.left
+                right: parent.right
+            }
             color: "white"
         }
 
@@ -198,14 +211,6 @@ Sheet {
                     else
                         return (composer.quotedBody + "\n-- \n" + sig + "\n");
                 }
-
-                platformStyle: TextAreaStyle {
-                    background: ""
-                    backgroundSelected: ""
-                    backgroundDisabled: ""
-                    backgroundError: ""
-                    backgroundCornerMargin: 0
-                }
             }
         }
     }
@@ -218,7 +223,7 @@ Sheet {
         }
     }
 
-    onAccepted: {
+    function send() {
         var i;
         var message;
 

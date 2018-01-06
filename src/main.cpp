@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2018 Chupligin Sergey <neochapay@gmail.com>
  * Copyright (C) 2011 Robin Burchell <robin+mer@viroteck.net>
  *
  * You may use this file under the terms of the BSD license as follows:
@@ -29,76 +30,23 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
  */
 
+#ifdef QT_QML_DEBUG
+#include <QtQuick>
+#endif
+
 #include <QGuiApplication>
 #include <QQuickView>
 #include <QtQml>
-#include <QDebug>
-#include <QDir>
-#ifdef HAS_BOOSTER
-#include <MDeclarativeCache>
-#endif
 
-#ifdef HAS_BOOSTER
-Q_DECL_EXPORT
-#endif
+#include <glacierapp.h>
+
 int main(int argc, char **argv)
 {
-    QGuiApplication *application;
-    QQuickView *view;
-#ifdef HAS_BOOSTER
-    application = MDeclarativeCache::qApplication(argc, argv);
-    view = MDeclarativeCache::qQuickView();
-#else
-    qWarning() << Q_FUNC_INFO << "Warning! Running without booster. This may be a bit slower.";
-    QGuiApplication stackApp(argc, argv);
-    QQuickView stackView;
-    application = &stackApp;
-    view = &stackView;
-#endif
+    QGuiApplication *app = GlacierApp::app(argc, argv);
+    app->setOrganizationName("NemoMobile");
 
-    QString path;
-    QString urlstring;
-    bool isFullscreen = false;
-    QStringList arguments = application->arguments();
-    for (int i = 0; i < arguments.count(); ++i) {
-        QString parameter = arguments.at(i);
-        if (parameter == "-path") {
-            if (i + 1 >= arguments.count())
-                qFatal("-path requires an argument");
-            path = arguments.at(i + 1);
-            i++;
-        } else if (parameter == "-url") {
-            if (i + 1 >= arguments.count())
-                qFatal("-path requires an argument");
-            urlstring = arguments.at(i + 1);
-            i++;
-        } else if (parameter == "-fullscreen") {
-            isFullscreen = true;
-        } else if (parameter == "-help") {
-            qDebug() << "EMail application";
-            qDebug() << "-fullscreen   - show QML fullscreen";
-            qDebug() << "-path         - path to cd to before launching -url";
-            qDebug() << "-url          - file to launch (default: main.qml inside -path)";
-            exit(0);
-        }
-    }
+    QQuickWindow *window = GlacierApp::showWindow();
+    window->setTitle(QObject::tr("Mail"));
 
-    if (!path.isEmpty())
-        QDir::setCurrent(path);
-
-    QUrl url;
-    if (urlstring.isEmpty())
-        url = QUrl("qrc:/qml/main.qml");
-    else
-        url = QUrl::fromUserInput(urlstring);
-
-    QObject::connect(view->engine(), SIGNAL(quit()), application, SLOT(quit()));
-    view->setSource(url);
-
-    if (isFullscreen)
-        view->showFullScreen();
-    else
-        view->show();
-
-    return application->exec();
+    return app->exec();
 }
