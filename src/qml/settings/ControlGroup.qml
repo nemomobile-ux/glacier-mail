@@ -1,13 +1,16 @@
 /*
  * Copyright 2011 Intel Corporation.
+ * Copyright (C) 2017-2018 Chupligin Sergey <neochapay@gmail.com>
  *
  * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at 	
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import QtQuick 1.0
-import MeeGo.Components 0.1
+import QtQuick 2.6
+import QtQuick.Controls 1.0
+import QtQuick.Controls.Nemo 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
 
 Column {
     property alias title: titleText.text
@@ -15,10 +18,6 @@ Column {
     property alias children: column2.children
     anchors.left: parent.left
     anchors.right: parent.right
-
-    Theme {
-        id: theme
-    }
 
     Column {
         anchors.left: parent.left
@@ -30,7 +29,7 @@ Column {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.leftMargin: 10
-            font.pixelSize: theme.fontPixelSizeLarge
+            font.pixelSize: Theme.fontSizeLarge
             visible: text.length > 0
         }
         Item { width: 1; height: 10; }
@@ -39,14 +38,14 @@ Column {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.leftMargin: 10
-            font.pixelSize: theme.fontPixelSizeMedium
+            font.pixelSize: Theme.fontSizeMedium
             wrapMode: Text.WordWrap
             visible: text.length > 0
         }
         Item { width: 1; height: 10; }
     }
     Rectangle {
-        color: "#d5ecf6"
+        color: "transparent"
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.leftMargin: 5

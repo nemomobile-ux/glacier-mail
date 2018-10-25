@@ -6,8 +6,11 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import QtQuick 1.0
-import MeeGo.Components 0.1
+import QtQuick 2.6
+import QtQuick.Controls 1.0
+import QtQuick.Controls.Nemo 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
+
 import "settings.js" as Settings
 
 Expandobox {
@@ -15,10 +18,6 @@ Expandobox {
     // ugly workaround to index name collision in
     // DropDown onSelectionChanged signal
     property int listIndex: -1
-
-    Theme {
-        id: theme
-    }
 
     Component.onCompleted: {
         listIndex = index ;
@@ -226,7 +225,7 @@ Expandobox {
             }
         }
     }
-    ModalMessageBox {
+    /*ModalMessageBox {
         id: verifyDelete
         acceptButtonText: qsTr ("Yes")
         cancelButtonText: qsTr ("Cancel")
@@ -243,5 +242,5 @@ Expandobox {
             setValue("email-AccoutSettingsPage-accExpandoSaveRestore-" +listIndex+"-expanded", rootExpando.expanded);
             sync();
         }
-    }
+    }*/
 }

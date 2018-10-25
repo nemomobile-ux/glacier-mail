@@ -6,8 +6,10 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import QtQuick 1.0
-import MeeGo.Components 0.1
+import QtQuick 2.6
+import QtQuick.Controls 1.0
+import QtQuick.Controls.Nemo 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
 
 Column {
     id: root
@@ -17,16 +19,11 @@ Column {
     anchors.rightMargin: 90
     property alias label: label.text
     property alias model: dropdown.model
-    property alias title: dropdown.title
-    property alias selectedTitle: dropdown.selectedTitle
-    property alias selectedIndex: dropdown.selectedIndex
+    property string title
+    property string selectedTitle
+    property string selectedIndex
 
     signal triggered (int index)
-
-    Theme {
-        id: theme
-    }
-
     Text {
         id: label
         height: 30
@@ -34,13 +31,8 @@ Column {
         font.italic: true
         color: "grey"
     }
-    DropDown {
+    GlacierRoller {
         id: dropdown
         width: 400
-        minWidth: 400
-        maxWidth: 500
-        titleColor: "black"
-        replaceDropDownTitle: true
-        onTriggered: root.triggered(index)
     }
 }

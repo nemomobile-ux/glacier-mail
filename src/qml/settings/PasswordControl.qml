@@ -1,13 +1,16 @@
 /*
  * Copyright 2011 Intel Corporation.
+ * Copyright (C) 2017-2018 Chupligin Sergey <neochapay@gmail.com>
  *
  * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at 	
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import QtQuick 1.0
-import MeeGo.Components 0.1
+import QtQuick 2.6
+import QtQuick.Controls 1.0
+import QtQuick.Controls.Nemo 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
 
 Column {
     id: root
@@ -27,7 +30,7 @@ Column {
     // private
     property bool suppress: true
 
-    signal textChanged()
+//    signal textChanged()
 
     function setText(text) {
         suppress = true;
@@ -35,19 +38,15 @@ Column {
         suppress = false;
     }
 
-    Theme {
-        id: theme
-    }
-
     Text {
         id: label
         height: 30
-        font.pixelSize: theme.fontPixelSizeLarge
+        font.pixelSize: Theme.fontSizeLarge
         font.italic: true
         color: "grey"
     }
 
-    TextEntry {
+    TextField {
         id: textentry
         anchors.left: parent.left
         anchors.right: parent.right

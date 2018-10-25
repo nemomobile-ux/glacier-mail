@@ -37,6 +37,12 @@ Page {
                         window.refreshInProgress = true;
                     }
                 }
+            },
+            ToolButton{
+                iconSource: "image://theme/plus"
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("settings/WelcomeScreen.qml"))
+                }
             }
         ]
     }

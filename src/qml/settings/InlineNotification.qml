@@ -6,22 +6,20 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import QtQuick 1.0
-import MeeGo.Components 0.1
+import QtQuick 2.6
+import QtQuick.Controls 1.0
+import QtQuick.Controls.Nemo 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
 
 Rectangle {
     property alias text: message.text
     color: "#FFFFAA"
-
-    Theme {
-        id: theme
-    }
 
     Text {
         id: message
         anchors.fill: parent
         anchors.margins: 10
         color: "#FF0000"
-        font.pixelSize: theme.fontPixelSizeNormal
+        font.pixelSize: Theme.fontSizeMedium
     }
 }

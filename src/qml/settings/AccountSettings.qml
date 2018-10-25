@@ -6,14 +6,13 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import QtQuick 1.0
-import MeeGo.Components 0.1
+import QtQuick 2.6
+import QtQuick.Controls 1.0
+import QtQuick.Controls.Nemo 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
 import "settings.js" as Settings
 
 Item {
-    Theme {
-        id: theme
-    }
 
     Flickable {
         id: accountSettingsFlickable
@@ -84,11 +83,11 @@ Item {
                         }
                     }
                 }
-                RadioGroup {
+                /*RadioGroup {
                     id: updateInterval
                     selectedValue: accountSettingsModel.updateInterval()
                     onSelectedValueChanged: accountSettingsModel.setUpdateInterval(selectedValue)
-                }
+                }*/
                 content: Component {
                     Rectangle {
                         anchors.left: parent.left
@@ -204,7 +203,7 @@ Item {
             }
         }
     }
-    ModalMessageBox {
+    /*ModalMessageBox {
         id: verifyCancel
         acceptButtonText: qsTr ("Yes")
         cancelButtonText: qsTr ("No")
@@ -218,7 +217,7 @@ Item {
         showCancelButton: false
         title: qsTr ("Changes saved")
         text: qsTr ("Your changes have been saved.")
-    }
+    }*/
     //FIXME use standard action bar here
     Rectangle {
         id: buttonBar
@@ -256,11 +255,11 @@ Item {
         }
     }
 
-    SaveRestoreState {
+    /*SaveRestoreState {
         id: accouSettingsSaveRestore
         onSaveRequired: {
             setValue("email-AccoutSettingsPage-accountSettingsFlickable-contentY",accountSettingsFlickable.contentY);
             sync();
         }
-    }
+    }*/
 }

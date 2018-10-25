@@ -1,13 +1,16 @@
 /*
  * Copyright 2011 Intel Corporation.
+ * Copyright (C) 2017-2018 Chupligin Sergey <neochapay@gmail.com>
  *
  * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at 	
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import QtQuick 1.0
-import MeeGo.Components 0.1
+import QtQuick 2.6
+import QtQuick.Controls 1.0
+import QtQuick.Controls.Nemo 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
 
 Column {
     anchors.left: parent.left
@@ -15,20 +18,45 @@ Column {
 
     spacing: 1
 
-    WelcomeButton {
-        title: qsTr("AOL")
-        icon: "image://themedimage/icons/services/aim"
-        onClicked: {
-            emailAccount.clear();
-            emailAccount.preset = 4; // AOL
-            emailAccount.description = qsTr("AOL");
-            savePreset();
-            settingsPage.state = "RegisterScreen";
+    ListModel{
+        id: accountsListModels
+        ListElement{
+            label: qsTr("Gmail")
+            icon: "image://theme/google"
+            preset: 2
+            description: qsTr("Google mail");
+        }
+        ListElement{
+            label:  qsTr("Microsoft Live Hotmail")
+            icon: "image://theme/microsoft"
+            preset: 5
+            description: qsTr("Microsoft Live Hotmail");
+        }
+        ListElement{
+            label:  qsTr("Yahoo!")
+            icon: "image://theme/yahoo"
+            preset: 3
+            description: "";
+        }
+        ListElement{
+            label:  qsTr("Other")
+            icon: "image://theme/envelope-open"
+            preset: 0
+            description: qsTr("generic mail account")
         }
     }
-    WelcomeButton {
+
+    ListView {
+        anchors.fill: parent
+        model: accountsListModels
+        delegate: ListViewItemWithActions {
+            showNext: true
+        }
+    }
+
+/*    WelcomeButton {
         title: qsTr("Gmail")
-        icon: "image://themedimage/icons/services/gmail"
+        icon: "image://theme/google"
         onClicked: {
             emailAccount.clear();
             emailAccount.preset = 2; // Gmail
@@ -39,7 +67,7 @@ Column {
     }
     WelcomeButton {
         title: qsTr("Microsoft Live Hotmail")
-        icon: "image://themedimage/icons/services/msmail"
+        icon: "image://theme/microsoft"
         onClicked: {
             emailAccount.clear();
             emailAccount.preset = 5; // Microsoft Live
@@ -48,22 +76,9 @@ Column {
             settingsPage.state = "RegisterScreen";
         }
     }
-    // disabled till we can get it working
-    /*
-    WelcomeButton {
-        title: qsTr("Mobile Me")
-        onClicked: {
-            emailAccount.clear();
-            emailAccount.preset = 1; // Mobile Me
-            emailAccount.description = qsTr("MobileMe");
-            savePreset();
-            settingsPage.state = "RegisterScreen";
-        }
-    }
-    */
     WelcomeButton {
         title: qsTr("Yahoo!")
-        icon: "image://themedimage/icons/services/yahoo"
+        icon: "image://theme/yahoo"
         onClicked: {
             emailAccount.clear();
             emailAccount.preset = 3; // Yahoo
@@ -74,7 +89,7 @@ Column {
     }
     WelcomeButton {
         title: qsTr("Other")
-        icon: "image://themedimage/icons/services/generic"
+        icon: "image://theme/envelope-open"
         onClicked: {
             emailAccount.clear();
             emailAccount.recvSecurity = "0"; // None
@@ -82,13 +97,6 @@ Column {
             emailAccount.sendSecurity = "0"; // None
             saveZero();
             settingsPage.state = "RegisterScreen";
-        }
-    }
-
-    SaveRestoreState {
-        id: welcomeButtonsSave
-        onSaveRequired: {
-            sync();
         }
     }
 
@@ -104,6 +112,5 @@ Column {
         welcomeButtonsSave.setValue("email-account-sendAuth",emailAccount.sendAuth);
         welcomeButtonsSave.setValue("email-account-sendSecurity",emailAccount.sendSecurity);
         welcomeButtonsSave.sync();
-    }
-
+    }*/
 }
