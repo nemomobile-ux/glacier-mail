@@ -3,7 +3,7 @@
  * Copyright 2011 Intel Corporation.
  *
  * This program is licensed under the terms and conditions of the
- * Apache License, version 2.0.  The full text of the Apache License is at 	
+ * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
@@ -57,23 +57,53 @@ ApplicationWindow {
     property bool composerIsCurrentPage: false
     property bool composeInTextMode: true
     property string errMsg: "";
-    property variant argv: [] 
+    property variant argv: []
     property variant accountFilterModel: []
+
+    SyncErrorDialog{
+        id: syncErrorDialog
+    }
 
     EmailAgent {
         id: emailAgent;
 
-	onError: {
+        onError: {
             window.refreshInProgress = false;
 
-            switch (code) {
-                case 1030: // cancelled by user
-                case 1040: // account modified by another process
-                    return;
+            switch (syncError) {
+            case EmailAgent.SyncFailed:
+                syncErrorDialog.headingText = qsTr("Sync failed")
+                break
+            case EmailAgent.LoginFailed:
+                syncErrorDialog.headingText = qsTr("Login failed")
+                break
+            case EmailAgent.DiskFull:
+                syncErrorDialog.headingText = qsTr("Disk full")
+                break
+            case EmailAgent.InvalidConfiguration:
+                syncErrorDialog.headingText = qsTr("Invalid configuration")
+                break
+            case EmailAgent.UntrustedCertificates:
+                syncErrorDialog.headingText = qsTr("Untrusted certificates")
+                break
+            case EmailAgent.InternalError:
+                syncErrorDialog.headingText = qsTr("Internal error")
+                break
+            case EmailAgent.SendFailed:
+                syncErrorDialog.headingText = qsTr("Send failed")
+                break
+            case EmailAgent.Timeout:
+                syncErrorDialog.headingText = qsTr("Timeout")
+                break
+            case EmailAgent.ServerError:
+                syncErrorDialog.headingText = qsTr("Server error")
+                break
+            case EmailAgent.NotConnected:
+                syncErrorDialog.headingText = qsTr("Not connected")
+                break
             }
 
-            errMsg = msg;
-            pageStack.openDialog(Qt.resolvedUrl("SyncErrorDialog.qml"))
+            syncErrorDialog.open();
         }
     }
 
@@ -125,10 +155,10 @@ ApplicationWindow {
         property int idx: 0
         function init() {
             clear();
-             for (idx = 0; idx < window.mailAttachments.length; idx ++)
-             {
-                 append({"uri": window.mailAttachments[idx]});
-             }
+            for (idx = 0; idx < window.mailAttachments.length; idx ++)
+            {
+                append({"uri": window.mailAttachments[idx]});
+            }
         }
     }
 
@@ -169,7 +199,7 @@ ApplicationWindow {
         }
     }
 
-/*
+    /*
     Connections {
         target: mainWindow
         onCall: {
@@ -179,7 +209,7 @@ ApplicationWindow {
             callFromRemote = true;
             if (cmd == "openComposer") {
                 // This is the command for opening up the composer window with attachments.
-                // cdata only contains a list of attachment files names 
+                // cdata only contains a list of attachment files names
                 var datalist = cdata.split(',');
                 window.mailAttachments = datalist;
                 mailAttachmentModel.init();
@@ -233,7 +263,7 @@ ApplicationWindow {
                 var msgIdx = messageListModel.indexFromMessageId(msgUuid);
                 window.currentMessageIndex = msgIdx;
                 if (cmd == "reply")
-                {   
+                {
                     if (window.composerIsCurrentPage)
                         window.popPage();
                     var newPage;
@@ -286,7 +316,7 @@ ApplicationWindow {
 
 
 
-/*
+    /*
     ///When a selection is made in the account filter menu, you will get a signal here:
     onBookMenuTriggered: {
         if (index == (window.accountFilterModel.length - 1)) {

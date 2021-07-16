@@ -100,8 +100,8 @@ Page {
                 window.currentMailAccountId = mailAccountId;
                 window.currentMailAccountIndex = index;
                 window.currentAccountDisplayName = displayName;
-                messageListModel.setAccountKey (mailAccountId);
-                mailFolderListModel.setAccountKey(mailAccountId);
+                //messageListModel.setAccountKey (mailAccountId);
+                //mailFolderListModel.setAccountKey(mailAccountId);
                 window.folderListViewTitle = window.currentAccountDisplayName + " Inbox";
                 window.currentFolderId = emailAgent.inboxFolderId(window.currentMailAccountId);
                 window.currentFolderName = "Inbox";

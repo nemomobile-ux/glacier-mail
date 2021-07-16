@@ -49,7 +49,7 @@ Page {
     }
 
     Component.onCompleted: {
-        mailFolderListModel.setAccountKey (currentMailAccountId);
+        //mailFolderListModel.setAccountKey (currentMailAccountId);
         window.currentFolderId = emailAgent.inboxFolderId(currentMailAccountId);
         //window.folderListViewTitle = currentAccountDisplayName + " Inbox";
         folderServerCount = mailFolderListModel.folderServerCount(window.currentFolderId);
@@ -65,19 +65,6 @@ Page {
     property bool inSelectMode: false
     property int numOfSelectedMessages: 0
     property int folderServerCount: 0
-
-    Connections {
-        target: emailAgent
-        onSyncCompleted: {
-            gettingMoreMessages = false;
-        }
-        onError: {
-            gettingMoreMessages = false;
-        }
-        onRetrievalCompleted: {
-            gettingMoreMessages = false;
-        }
-    }
 
     ListModel {
         id: toModel
@@ -108,7 +95,7 @@ Page {
 
     Label {
         text: qsTr("No messages in this folder")
-        visible: messageListView.count == 0
+        visible: messageListView.count == 0 && !emailAgent.synchronizing
         anchors.centerIn: parent
     }
 
@@ -118,6 +105,8 @@ Page {
         clip: true
         cacheBuffer: height
         model: messageListModel
+
+        visible: !emailAgent.synchronizing
 
         footer: Item {
             id: getMoreMessageRect
@@ -220,5 +209,11 @@ Page {
         ScrollDecorator {
             flickable: parent
         }
+    }
+
+    Spinner{
+        id: syncSpiner
+        visible: emailAgent.synchronizing
+        anchors.centerIn: parent
     }
 }
