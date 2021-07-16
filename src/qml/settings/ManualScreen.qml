@@ -292,7 +292,7 @@ Page {
             }
             onClicked: {
                 if (validate()) {
-                    pageStack.push(Qt.resolvedUrl("DetailsScreen.qml"));
+                    pageStack.push(Qt.resolvedUrl("DetailsScreen.qml"), {emailAccount: emailAccount});
                 }
             }
         }

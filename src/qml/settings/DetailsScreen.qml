@@ -1,26 +1,32 @@
 /*
  * Copyright 2011 Intel Corporation.
+ * Copyright (C) 2021 Chupligin Sergey <neochapay@gmail.com>
  *
  * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at 	
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import QtQuick 1.0
-import MeeGo.Components 0.1
-import MeeGo.Settings 0.1
+import QtQuick 2.6
+import QtQuick.Controls 1.0
+import QtQuick.Controls.Nemo 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
+
 import "settings.js" as Settings
 
-Item {
-    id: root
+import Nemo.Dialogs 1.0
+
+Page {
+    id: detalScreen
     property variant overlay: null
+    property var emailAccount
 
-    anchors.fill: parent
-
-    Rectangle {
-        anchors.fill: parent
-        color: "#eaf6fb"
+    headerTools:  HeaderToolsLayout {
+        id: hTools
+        title: qsTr("Account Detals")
+        showBackButton: true
     }
+
     Flickable {
         id: detailFlick
         clip: true
@@ -32,7 +38,7 @@ Item {
         contentHeight: content.height
         flickableDirection: Flickable.VerticalFlick
         Item {
-            width: settingsPage.width
+            width: detalScreen.width
             Column {
                 id: content
                 anchors.left: parent.left
@@ -100,32 +106,36 @@ Item {
         }
 
         Component.onCompleted: {
-            contentY = detailsSaveRestoreState.restoreRequired ?
-                        detailsSaveRestoreState.value("email-details-detailFlick-contentY") : 0;
+/*            contentY = detailsSaveRestoreState.restoreRequired ?
+                        detailsSaveRestoreState.value("email-details-detailFlick-contentY") : 0;*/
         }
     }
-    ModalMessageBox {
+    QueryDialog {
         id: verifyCancel
-        acceptButtonText: qsTr ("Yes")
-        cancelButtonText: qsTr ("No")
-        title: qsTr ("Discard changes")
-        text: qsTr ("You have made changes to your settings. Are you sure you want to cancel?")
+        acceptText: qsTr ("Yes")
+        cancelText: qsTr ("No")
+        headingText: qsTr ("Discard changes")
+        subLabelText: qsTr ("You have made changes to your settings. Are you sure you want to cancel?")
         onAccepted: { settingsPage.state = settingsPage.getHomescreen() }
     }
-    ModalMessageBox {
+
+    Dialog {
         id: errorDialog
-        acceptButtonText: qsTr("OK")
-        showCancelButton: false
-        title: qsTr("Error")
-        text: qsTr("Error %1: %2").arg(emailAccount.errorCode).arg(emailAccount.errorMessage)
+        acceptText: qsTr("OK")
+        headingText: qsTr("Error")
+        subLabelText: qsTr("Error %1: %2").arg(emailAccount.errorCode).arg(emailAccount.errorMessage)
         onAccepted: {
-            settingsPage.state = "ManualScreen";
-            loader.item.message = qsTr("Sorry, we can't automatically set up your account. Please fill in account details:");
+            pageStack.pop(0)
+            //loader.item.message = qsTr("Sorry, we can't automatically set up your account. Please fill in account details:");
         }
     }
 
     // spinner overlay
-    ModalSpinner { id: spinner }
+    Spinner {
+        id: spinner
+        anchors.centerIn: parent
+        visible: false
+    }
 
     //FIXME use standard action bar here
     Rectangle {
@@ -185,7 +195,7 @@ Item {
         }
     }
 
-    SaveRestoreState {
+/*    SaveRestoreState {
         id: detailsSaveRestoreState
         onSaveRequired: {
             setValue("email-details-detailFlick-contentY",detailFlick.contentY);
@@ -193,15 +203,15 @@ Item {
             setValue("email-details-errorDialog-visible",errorDialog.visible);
             sync();
         }
-    }
+    }*/
 
     Component.onCompleted: {
-        if(detailsSaveRestoreState.restoreRequired) {
+        /*if(detailsSaveRestoreState.restoreRequired) {
             if(detailsSaveRestoreState.value("email-details-verifyCancel-visible") == "true") {
                 verifyCancel.show();
             } else if(detailsSaveRestoreState.value("email-details-errorDialog-visible") == "true") {
                 errorDialog.show();
             }
-        }
+        }*/
     }
 }
