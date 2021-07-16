@@ -1,5 +1,6 @@
 /*
  * Copyright 2011 Intel Corporation.
+ * Copyright (C) 2021 Chupligin Sergey <neochapay@gmail.com>
  *
  * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at 	
@@ -21,14 +22,12 @@ AppPage {
     EmailAccount { id: emailAccount }
     EmailAccountSettingsModel { id: accountSettingsModel }
     Labs.ApplicationsModel { id: appModel }
-    function returnToEmail() {
-        var cmd = "/usr/bin/meego-qml-launcher --app meego-app-email --opengl --fullscreen"; //i18n ok
-        appModel.launch(cmd);
-    }
+
     Loader {
         id: loader
         anchors.fill: parent
     }
+
     function getRestoredHomescreen() {
         if(mainSaveRestoreState.restoreRequired) {
             emailAccount.clear();

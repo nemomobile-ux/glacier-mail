@@ -1,5 +1,6 @@
 /*
  * Copyright 2011 Intel Corporation.
+ * Copyright (C) 2018-2021 Chupligin Sergey <neochapay@gmail.com>
  *
  * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
@@ -25,6 +26,58 @@ Page {
         showBackButton: true
     }
 
+    Component.onCompleted: {
+        autoCompliteTable();
+    }
+
+    function autoCompliteTable() {
+        var userName = emailAccount.address.split("@")[0];
+        var serverName = emailAccount.address.split("@")[1];
+// PORT FIELD
+        if(recvPortField.text == "") {
+            if(serverType.currentIndex == 0) {
+                //POP
+                recvPortField.text = 995
+            } else {
+                recvPortField.text = 993
+            }
+        }
+//SERVER NAME
+        if(recvServerField.text == "") {
+            if(serverType.currentIndex) {
+                recvServerField.text = "pop."+serverName;
+            } else {
+                recvServerField.text = "imap."+serverName;
+            }
+        }
+//USER NAME
+        if(recvUsernameField.text == "") {
+            recvUsernameField.text = userName
+        }
+//USER PASSWORD
+        if(recvPasswordField.text == "") {
+            recvPasswordField.text = emailAccount.password
+        }
+
+//SEND SERVER
+        if(sendServerField.text == "") {
+            sendServerField.text = "smtp."+serverName
+        }
+//SEND USER
+        if(sendUsernameField.text == "") {
+            sendUsernameField.text = userName
+        }
+//SEND PASSWORD
+        if(sendPasswordField.text == "") {
+            sendPasswordField.text = emailAccount.password
+        }
+    }
+
+    ScrollDecorator{
+        id: decorator
+        flickable: manualFlick
+    }
+
     Flickable {
         id: manualFlick
         clip: true
@@ -33,9 +86,10 @@ Page {
         height: parent.height-buttonBar.height
 
         flickableDirection: Flickable.VerticalFlick
-        contentHeight: childrenRect.height
+        contentHeight: settingsColumn.height
 
         Column {
+            id: settingsColumn
             width: parent.width
             spacing: Theme.itemSpacingMedium
 
@@ -61,6 +115,7 @@ Page {
                     }
                 }
             }
+
             TextField {
                 id: recvServerField
                 placeholderText: qsTr("Server address")
@@ -109,6 +164,7 @@ Page {
                 width: parent.width - Theme.itemSpacingMedium*2
                 text: emailAccount.recvPassword
                 onTextChanged: emailAccount.recvPassword = text
+                echoMode: TextInput.Password
             }
 
             Label {
@@ -127,7 +183,7 @@ Page {
                 id: sendPortField
                 placeholderText: qsTr("Port")
                 width: parent.width - Theme.itemSpacingMedium*2
-                text: emailAccount.sendPort
+                text: emailAccount.sendPort != "" ? emailAccount.sendPort : "465"
                 inputMethodHints: Qt.ImhDigitsOnly
                 onTextChanged: emailAccount.sendPort = text
             }
@@ -181,6 +237,7 @@ Page {
                 placeholderText: qsTr("Password")
                 text: emailAccount.sendPassword
                 onTextChanged: emailAccount.sendPassword = text
+                echoMode: TextInput.Password
             }
         }
     }
@@ -208,7 +265,6 @@ Page {
             height: parent.height
             width: parent.width/2
             anchors.right: parent.right
-
             primary: true
 
             text: qsTr("Next")
@@ -235,8 +291,9 @@ Page {
                 return errors === 0;
             }
             onClicked: {
-                if (validate())
-                    settingsPage.state = "DetailsScreen";
+                if (validate()) {
+                    pageStack.push(Qt.resolvedUrl("DetailsScreen.qml"));
+                }
             }
         }
         Button {

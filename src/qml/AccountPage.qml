@@ -48,9 +48,13 @@ Page {
     }
 
     Label {
+        id: noAccountLabel
         text: qsTr("No accounts configured")
         visible: listView.count == 0
         anchors.centerIn: parent
+        wrapMode: Text.WordWrap
+        width: parent.width
+        horizontalAlignment: Text.AlignHCenter
     }
 
     ListView {
