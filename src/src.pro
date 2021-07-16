@@ -1,6 +1,6 @@
 TARGET = glacier-mail
 TEMPLATE = app
-QT += qml quick webkit network
+QT += qml quick webengine network
 
 CONFIG += link_pkgconfig
 
