@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Chupligin Sergey <neochapay@gmail.com>
+/* Copyright (C) 2018-2021 Chupligin Sergey <neochapay@gmail.com>
  * Copyright 2011 Intel Corporation.
  *
  * This program is licensed under the terms and conditions of the
@@ -11,7 +11,7 @@ import QtQuick.Controls 1.0
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
 
-import org.nemomobile.email 0.1
+import Nemo.Email 0.1
 
 Item {
     id: folderListMenu

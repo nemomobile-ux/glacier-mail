@@ -1,6 +1,6 @@
 /*
  * Copyright 2011 Intel Corporation.
- * Copyright (C) 2017-2018 Chupligin Sergey <neochapay@gmail.com>
+ * Copyright (C) 2017-2021 Chupligin Sergey <neochapay@gmail.com>
  *
  * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
@@ -13,7 +13,7 @@ import QtQuick.Controls 1.0
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
 
-import org.nemomobile.email 0.1
+import Nemo.Email 0.1
 import Nemo.Dialogs 1.0
 
 Page {
