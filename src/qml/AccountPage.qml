@@ -81,17 +81,18 @@ Page {
 
             function formatLabel()
             {
-                var label = ""
-                if(displayName == emailAddress)
-                {
+                var label;
+                if(displayName != "") {
+                    label = displayName;
+                } else {
                     var label_r = displayName.split("@");
                     label += qsTr("Mail on")+" "+label_r[1];
                 }
 
-                if(unreadCount > 0)
-                {
+                if(unreadCount > 0) {
                     label += " ("+unreadCount+")"
                 }
+
                 return label
             }
 
