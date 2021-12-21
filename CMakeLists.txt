@@ -30,4 +30,4 @@ install(FILES ${QM_FILES}
 install(FILES glacier-mail.desktop
 	DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
 install(FILES src/icon/glacier-mail.png
-        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/glacier-calc/images/)
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/glacier-mail)
