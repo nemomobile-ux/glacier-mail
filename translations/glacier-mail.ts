@@ -764,7 +764,12 @@
     </message>
     <message>
         <location filename="../src/qml/settings/RegisterScreen.qml" line="100"/>
-        <source>Retutn</source>
+        <source>Return</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="165"/>
+        <source>All fields are required!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -780,11 +785,6 @@
     <message>
         <location filename="../src/qml/settings/RegisterScreen.qml" line="148"/>
         <source>Same account is already registered</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="165"/>
-        <source>All feild required!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
