@@ -97,7 +97,7 @@ Page {
 
     Dialog{
         id: errorDialog
-        acceptText: qsTr("Retutn")
+        acceptText: qsTr("Return")
         headingText: qsTr("Error")
 
         inline: false
@@ -162,7 +162,7 @@ Page {
                         pageStack.push(Qt.resolvedUrl("ManualScreen.qml"), {emailAccount: emailAccount});
                     }
                 } else {
-                    errorDialog.subLabelText = qsTr("All feild required!")
+                    errorDialog.subLabelText = qsTr("All fields are required!")
                     errorDialog.open()
                 }
             }
