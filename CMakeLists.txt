@@ -18,6 +18,7 @@ find_package(Glacier 0.8 COMPONENTS App REQUIRED)
 find_package(Qt5QuickCompiler)
 
 add_subdirectory(src)
+add_subdirectory(emailnotificationd)
 
 # Translations
 file(GLOB TS_FILES translations/*.ts)
