@@ -38,6 +38,7 @@ Page {
         id: flickForm
         clip: true
         anchors.fill: parent
+        anchors.margins: Theme.itemSpacingMedium
         flickableDirection: Flickable.VerticalFlick
 
         Column {
@@ -52,7 +53,7 @@ Page {
                 placeholderText: qsTr("Account description:")
                 text: emailAccount.description;
                 enabled: visible
-                width: parent.width - Theme.itemSpacingMedium*2
+                width: parent.width
                 // hide this field for "other" type accounts
                 visible: registerPage.preset == 0
             }
@@ -60,7 +61,7 @@ Page {
             TextField {
                 id: nameField
                 placeholderText: qsTr("Your name:")
-                width: parent.width - Theme.itemSpacingMedium*2
+                width: parent.width
                 text: emailAccount.name //done to supress onTextChanged
                 onTextChanged: emailAccount.name = text
             }
@@ -68,7 +69,7 @@ Page {
             TextField {
                 id: addressField
                 placeholderText: qsTr("Email address:")
-                width: parent.width - Theme.itemSpacingMedium*2
+                width: parent.width
                 text: emailAccount.address
                 inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhEmailCharactersOnly
                 onTextChanged: emailAccount.address = text
@@ -77,7 +78,7 @@ Page {
             TextField {
                 id: passwordField
                 placeholderText: qsTr("Password:")
-                width: parent.width - Theme.itemSpacingMedium*2
+                width: parent.width
                 onTextChanged: emailAccount.password = text
                 echoMode: TextInput.Password
             }

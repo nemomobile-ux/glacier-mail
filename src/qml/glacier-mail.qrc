@@ -29,6 +29,7 @@
         <file>settings/EmailSettings.qml</file>
         <file>settings/DetailsScreen.qml</file>
         <file>settings/IntervalOption.qml</file>
+        <file>settings/settings.js</file>
         <file>ReadingViewToolbar.qml</file>
         <file>EmailAddress.qml</file>
         <file>ReadingViewBottomBar.qml</file>

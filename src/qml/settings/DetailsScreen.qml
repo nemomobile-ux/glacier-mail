@@ -160,11 +160,11 @@ Page {
             Connections {
                 target: emailAccount
                 onTestSucceeded: {
-                    spinner.hide();
+                    spinner.stop();
                     settingsPage.state = "ConfirmScreen";
                 }
                 onTestFailed: {
-                    spinner.hide();
+                    spinner.stop();
                     errorDialog.show();
                     emailAccount.remove();
                 }
