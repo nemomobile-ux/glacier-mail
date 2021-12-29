@@ -1,0 +1,46 @@
+<RCC>
+    <qresource prefix="/">
+        <file>glacier-mail.qml</file>
+        <file>AttachmentPicker.qml</file>
+        <file>FolderListView.qml</file>
+        <file>AccountPage.qml</file>
+        <file>ComposerViewToolbar.qml</file>
+        <file>ConfirmDeleteDialog.qml</file>
+        <file>EmailHeader.qml</file>
+        <file>AttachmentDownloadDialog.qml</file>
+        <file>SyncErrorDialog.qml</file>
+        <file>ComposerSheet.qml</file>
+        <file>EmailRecipientEntry.qml</file>
+        <file>settings/ControlGroup.qml</file>
+        <file>settings/WelcomeScreen.qml</file>
+        <file>settings/AccountSettings.qml</file>
+        <file>settings/InlineNotification.qml</file>
+        <file>settings/WelcomeButtons.qml</file>
+        <file>settings/RegisterScreen.qml</file>
+        <file>settings/ConfirmScreen.qml</file>
+        <file>settings/ManualScreen.qml</file>
+        <file>settings/DropDownControl.qml</file>
+        <file>settings/Expandobox.qml</file>
+        <file>settings/NotificationSetting.qml</file>
+        <file>settings/PasswordControl.qml</file>
+        <file>settings/AccountExpandobox.qml</file>
+        <file>settings/TextControl.qml</file>
+        <file>settings/Subheader.qml</file>
+        <file>settings/EmailSettings.qml</file>
+        <file>settings/DetailsScreen.qml</file>
+        <file>settings/IntervalOption.qml</file>
+        <file>ReadingViewToolbar.qml</file>
+        <file>EmailAddress.qml</file>
+        <file>ReadingViewBottomBar.qml</file>
+        <file>AddAttachmentToolbar.qml</file>
+        <file>FolderSelectionDialog.qml</file>
+        <file>FolderListViewToolbar.qml</file>
+        <file>ReadingView.qml</file>
+        <file>FolderListMenu.qml</file>
+        <file>AddAttachmentView.qml</file>
+        <file>AttachmentPill.qml</file>
+        <file>MessageContextMenu.qml</file>
+        <file>SortFilter.qml</file>
+        <file>AttachmentView.qml</file>
+    </qresource>
+</RCC>

@@ -2,7 +2,9 @@ set(SRC
     main.cpp
 )
 
-add_executable(glacier-mail ${SRC})
+qtquick_compiler_add_resources(RESOURCES qml/glacier-mail.qrc)
+
+add_executable(glacier-mail ${SRC} ${RESOURCES})
 
 target_link_libraries(glacier-mail
 	Qt5::Gui
@@ -13,5 +15,3 @@ target_link_libraries(glacier-mail
 
 install(TARGETS glacier-mail RUNTIME
 	DESTINATION ${CMAKE_INSTALL_BINDIR})
-install(DIRECTORY qml
-	DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/glacier-mail)
