@@ -155,7 +155,7 @@ Page {
             onClicked: {
                 emailAccount.save();
                 emailAccount.test();
-                spinner.show();
+                spinner.start();
             }
             Connections {
                 target: emailAccount

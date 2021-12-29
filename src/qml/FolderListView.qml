@@ -52,7 +52,13 @@ Page {
         //mailFolderListModel.setAccountKey (currentMailAccountId);
         window.currentFolderId = emailAgent.inboxFolderId(currentMailAccountId);
         //window.folderListViewTitle = currentAccountDisplayName + " Inbox";
-        folderServerCount = mailFolderListModel.folderServerCount(window.currentFolderId);
+        //        folderServerCount = mailFolderListModel.folderServerCount(c);
+        for (var i = 0; i < mailFolderListModel.rowCount(); i++) {
+            if (mailFolderListModel.data(i, "folderId") === mailFolderListModel) {
+                folderServerCount = mailFolderListModel.data(i, "FolderServerCount");
+                break;
+            }
+        }
         gettingMoreMessages = false;
     }
 
