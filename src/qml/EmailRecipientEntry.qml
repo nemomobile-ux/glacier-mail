@@ -26,7 +26,7 @@ Column {
 
     TextField {
         id: recipientListLabel
-        placeholderText: "To:"
+        placeholderText: qsTr("To:")
         width: parent.width
 
         visible: input.text == "" && repeater.model.count == 0

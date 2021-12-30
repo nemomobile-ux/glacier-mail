@@ -143,6 +143,7 @@ Item {
         Sheet {
             id: createFolderDialog
 
+            //: Default custom e-mail folder name.
             property string untitledFolder: qsTr("Untitled Folder")
 
             acceptButtonText: qsTr("Create")
@@ -153,7 +154,6 @@ Item {
                 id: folderNameEntry
 
                 anchors.centerIn: parent
-                //: Default custom e-mail folder name.
                 text: createFolderDialog.untitledFolder
             }
 
@@ -205,7 +205,7 @@ Item {
 
                 anchors.centerIn: parent
 
-                //: Default custom e-mail folder name.
+                // Default custom e-mail folder name.
                 text: window.currentFolderName
             }
 
