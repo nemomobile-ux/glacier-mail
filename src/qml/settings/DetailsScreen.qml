@@ -155,16 +155,16 @@ Page {
             onClicked: {
                 emailAccount.save();
                 emailAccount.test();
-                spinner.show();
+                spinner.start();
             }
             Connections {
                 target: emailAccount
                 onTestSucceeded: {
-                    spinner.hide();
+                    spinner.stop();
                     settingsPage.state = "ConfirmScreen";
                 }
                 onTestFailed: {
-                    spinner.hide();
+                    spinner.stop();
                     errorDialog.show();
                     emailAccount.remove();
                 }
@@ -190,7 +190,7 @@ Page {
             //color: "white"
             text: qsTr("Cancel")
             onClicked: {
-                verifyCancel.show();
+                verifyCancel.open();
             }
         }
     }
@@ -208,7 +208,7 @@ Page {
     Component.onCompleted: {
         /*if(detailsSaveRestoreState.restoreRequired) {
             if(detailsSaveRestoreState.value("email-details-verifyCancel-visible") == "true") {
-                verifyCancel.show();
+                verifyCancel.open();
             } else if(detailsSaveRestoreState.value("email-details-errorDialog-visible") == "true") {
                 errorDialog.show();
             }

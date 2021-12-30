@@ -205,8 +205,8 @@ Page {
                 width: parent.width
                 visible: window.composeInTextMode
                 text : {
-                    var sig = emailAgent.getSignatureForAccount(window.currentMailAccountId);
-                    if (sig == "")
+                    var sig = emailAgent.signatureForAccount(window.currentMailAccountId);
+                    if (sig === "")
                         return composer.quotedBody;
                     else
                         return (composer.quotedBody + "\n-- \n" + sig + "\n");

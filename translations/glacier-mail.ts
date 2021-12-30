@@ -450,6 +450,14 @@
     </message>
 </context>
 <context>
+    <name>EmailRecipientEntry</name>
+    <message>
+        <location filename="../src/qml/EmailRecipientEntry.qml" line="29"/>
+        <source>To:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>EmailSettings</name>
     <message>
         <location filename="../src/qml/settings/EmailSettings.qml" line="19"/>
@@ -465,17 +473,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListMenu.qml" line="146"/>
+        <location filename="../src/qml/FolderListMenu.qml" line="147"/>
         <source>Untitled Folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/qml/FolderListMenu.qml" line="148"/>
-        <source>Create</source>
+        <extracomment>Default custom e-mail folder name.</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qml/FolderListMenu.qml" line="149"/>
+        <source>Create</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qml/FolderListMenu.qml" line="150"/>
         <location filename="../src/qml/FolderListMenu.qml" line="200"/>
         <location filename="../src/qml/FolderListMenu.qml" line="255"/>
         <source>Cancel</source>
@@ -510,27 +519,27 @@
 <context>
     <name>FolderListView</name>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="62"/>
+        <location filename="../src/qml/FolderListView.qml" line="68"/>
         <source>Choose folder:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="63"/>
+        <location filename="../src/qml/FolderListView.qml" line="69"/>
         <source>Attachments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="97"/>
+        <location filename="../src/qml/FolderListView.qml" line="103"/>
         <source>No messages in this folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="124"/>
+        <location filename="../src/qml/FolderListView.qml" line="130"/>
         <source>Getting more messages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="126"/>
+        <location filename="../src/qml/FolderListView.qml" line="132"/>
         <source>Get more messages</source>
         <translation type="unfinished"></translation>
     </message>
@@ -743,52 +752,52 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="52"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="53"/>
         <source>Account description:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="62"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="63"/>
         <source>Your name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="70"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="71"/>
         <source>Email address:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="79"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="80"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="100"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="101"/>
         <source>Return</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="165"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="166"/>
         <source>All fields are required!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="101"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="102"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="130"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="131"/>
         <source>Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="148"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="149"/>
         <source>Same account is already registered</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="175"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="176"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
