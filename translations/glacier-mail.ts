@@ -89,13 +89,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/AccountPage.qml" line="52"/>
+        <location filename="../src/qml/AccountPage.qml" line="53"/>
         <source>No accounts configured</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/AccountPage.qml" line="88"/>
-        <source>Mail on</source>
+        <location filename="../src/qml/AccountPage.qml" line="80"/>
+        <source>Not synchronized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qml/AccountPage.qml" line="86"/>
+        <source>%1 (unread %2)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -236,6 +241,11 @@
     <message>
         <location filename="../src/qml/ComposerSheet.qml" line="63"/>
         <source>On %1 %2 wrote:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qml/ComposerSheet.qml" line="219"/>
+        <source>Send</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

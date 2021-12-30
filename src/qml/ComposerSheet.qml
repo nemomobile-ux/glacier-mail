@@ -189,7 +189,7 @@ Page {
             anchors{
                 top: header.bottom
                 topMargin: Theme.itemSpacingSmall
-                bottom: parent.bottom
+                bottom: sendButton.top;
                 left: parent.left
                 right: parent.right
             }
@@ -212,6 +212,20 @@ Page {
                         return (composer.quotedBody + "\n-- \n" + sig + "\n");
                 }
             }
+        }
+
+        Button {
+            id: sendButton
+            text: qsTr("Send")
+            onClicked: {
+                send();
+            }
+            anchors{
+                bottom: parent.bottom
+                left: parent.left
+                right: parent.right
+            }
+
         }
     }
 
