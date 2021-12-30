@@ -190,7 +190,7 @@ Page {
             //color: "white"
             text: qsTr("Cancel")
             onClicked: {
-                verifyCancel.show();
+                verifyCancel.open();
             }
         }
     }
@@ -208,7 +208,7 @@ Page {
     Component.onCompleted: {
         /*if(detailsSaveRestoreState.restoreRequired) {
             if(detailsSaveRestoreState.value("email-details-verifyCancel-visible") == "true") {
-                verifyCancel.show();
+                verifyCancel.open();
             } else if(detailsSaveRestoreState.value("email-details-errorDialog-visible") == "true") {
                 errorDialog.show();
             }
