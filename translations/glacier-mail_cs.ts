@@ -87,14 +87,19 @@
         <translation>Mail</translation>
     </message>
     <message>
-        <location filename="../src/qml/AccountPage.qml" line="52"/>
+        <location filename="../src/qml/AccountPage.qml" line="53"/>
         <source>No accounts configured</source>
         <translation>Není nastavený žádný účet</translation>
     </message>
     <message>
-        <location filename="../src/qml/AccountPage.qml" line="88"/>
-        <source>Mail on</source>
-        <translation>Mail na</translation>
+        <location filename="../src/qml/AccountPage.qml" line="80"/>
+        <source>Not synchronized</source>
+        <translation>Není synchronizováno</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/AccountPage.qml" line="86"/>
+        <source>%1 (unread %2)</source>
+        <translation>%1 (nepřečteno %2)</translation>
     </message>
 </context>
 <context>
@@ -235,6 +240,11 @@
         <location filename="../src/qml/ComposerSheet.qml" line="63"/>
         <source>On %1 %2 wrote:</source>
         <translation>%1 %2 napsal:</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/ComposerSheet.qml" line="219"/>
+        <source>Send</source>
+        <translation>Odeslat</translation>
     </message>
 </context>
 <context>
@@ -448,6 +458,14 @@
     </message>
 </context>
 <context>
+    <name>EmailRecipientEntry</name>
+    <message>
+        <location filename="../src/qml/EmailRecipientEntry.qml" line="29"/>
+        <source>To:</source>
+        <translation>Komu:</translation>
+    </message>
+</context>
+<context>
     <name>EmailSettings</name>
     <message>
         <location filename="../src/qml/settings/EmailSettings.qml" line="19"/>
@@ -463,17 +481,18 @@
         <translation>Vytvořit novou složku</translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListMenu.qml" line="146"/>
+        <location filename="../src/qml/FolderListMenu.qml" line="147"/>
         <source>Untitled Folder</source>
+        <extracomment>Default custom e-mail folder name.</extracomment>
         <translation>Nepojmenovaná složka</translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListMenu.qml" line="148"/>
+        <location filename="../src/qml/FolderListMenu.qml" line="149"/>
         <source>Create</source>
         <translation>Vytvořit</translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListMenu.qml" line="149"/>
+        <location filename="../src/qml/FolderListMenu.qml" line="150"/>
         <location filename="../src/qml/FolderListMenu.qml" line="200"/>
         <location filename="../src/qml/FolderListMenu.qml" line="255"/>
         <source>Cancel</source>
@@ -508,27 +527,27 @@
 <context>
     <name>FolderListView</name>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="62"/>
+        <location filename="../src/qml/FolderListView.qml" line="68"/>
         <source>Choose folder:</source>
         <translation>Vyberte složku:</translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="63"/>
+        <location filename="../src/qml/FolderListView.qml" line="69"/>
         <source>Attachments</source>
         <translation>Přílohy</translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="97"/>
+        <location filename="../src/qml/FolderListView.qml" line="103"/>
         <source>No messages in this folder</source>
         <translation>V této složce nejsou žádné emaily</translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="124"/>
+        <location filename="../src/qml/FolderListView.qml" line="130"/>
         <source>Getting more messages</source>
         <translation>Získává se více zpráv</translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="126"/>
+        <location filename="../src/qml/FolderListView.qml" line="132"/>
         <source>Get more messages</source>
         <translation>Získat více zpráv</translation>
     </message>
@@ -741,52 +760,52 @@
         <translation>Obecný poštovní účet</translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="52"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="53"/>
         <source>Account description:</source>
         <translation>Popis účtu</translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="62"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="63"/>
         <source>Your name:</source>
         <translation>Vaše jméno:</translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="70"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="71"/>
         <source>Email address:</source>
         <translation>Emailová adresa:</translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="79"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="80"/>
         <source>Password:</source>
         <translation>Heslo:</translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="100"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="101"/>
         <source>Return</source>
         <translation>Vrátit se</translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="165"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="166"/>
         <source>All fields are required!</source>
         <translation>Jsou vyžadovány všechny pole!</translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="101"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="102"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="130"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="131"/>
         <source>Next</source>
         <translation>Další</translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="148"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="149"/>
         <source>Same account is already registered</source>
         <translation>Stejný účet už je registrovaný</translation>
     </message>
     <message>
-        <location filename="../src/qml/settings/RegisterScreen.qml" line="175"/>
+        <location filename="../src/qml/settings/RegisterScreen.qml" line="176"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
