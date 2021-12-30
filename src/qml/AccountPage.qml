@@ -33,7 +33,8 @@ Page {
                         emailAgent.cancelSync();
                         window.refreshInProgress = false;
                     } else {
-                        emailAgent.accountsSync();
+                        emailAgent.accountsSyncInbox();
+//                        emailAgent.accountsSyncAllFolders();
                         window.refreshInProgress = true;
                     }
                 }
@@ -76,23 +77,16 @@ Page {
             }
 
             label: formatLabel()
-            description: emailAddress
+            description: (model.lastSynchronized == 0) ? qsTr("Not synchronized") : model.lastSynchronized
             iconVisible: false
 
-            function formatLabel()
-            {
-                var label = ""
-                if(displayName == emailAddress)
-                {
-                    var label_r = displayName.split("@");
-                    label += qsTr("Mail on")+" "+label_r[1];
-                }
+            function formatLabel() {
 
-                if(unreadCount > 0)
-                {
-                    label += " ("+unreadCount+")"
+                if(unreadCount > 0) {
+                    return qsTr("%1 (unread %2)").arg(emailAddress, unreadCount)
                 }
-                return label
+                return emailAddress
+
             }
 
             onClicked: {
