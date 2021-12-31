@@ -89,17 +89,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/AccountPage.qml" line="53"/>
+        <location filename="../src/qml/AccountPage.qml" line="55"/>
         <source>No accounts configured</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/AccountPage.qml" line="80"/>
+        <location filename="../src/qml/AccountPage.qml" line="83"/>
+        <source>Synchronizing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qml/AccountPage.qml" line="84"/>
         <source>Not synchronized</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/AccountPage.qml" line="86"/>
+        <location filename="../src/qml/AccountPage.qml" line="90"/>
         <source>%1 (unread %2)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -529,27 +534,27 @@
 <context>
     <name>FolderListView</name>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="68"/>
+        <location filename="../src/qml/FolderListView.qml" line="69"/>
         <source>Choose folder:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="69"/>
+        <location filename="../src/qml/FolderListView.qml" line="70"/>
         <source>Attachments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="103"/>
+        <location filename="../src/qml/FolderListView.qml" line="104"/>
         <source>No messages in this folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="130"/>
+        <location filename="../src/qml/FolderListView.qml" line="131"/>
         <source>Getting more messages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="132"/>
+        <location filename="../src/qml/FolderListView.qml" line="133"/>
         <source>Get more messages</source>
         <translation type="unfinished"></translation>
     </message>

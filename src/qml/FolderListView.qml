@@ -25,6 +25,7 @@ Page {
         tools: [
             ToolButton{
                 iconSource: "image://theme/refresh"
+                active: emailAgent.synchronizing
                 onClicked: {
                     // TODO: a spinner in the PageHeader would be neat
                     if (window.refreshInProgress == true) {
