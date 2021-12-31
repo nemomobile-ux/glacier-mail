@@ -28,6 +28,8 @@ Page {
         tools: [
             ToolButton{
                 iconSource: "image://theme/refresh"
+                active: emailAgent.synchronizing
+
                 onClicked: {
                     if (window.refreshInProgress == true) {
                         emailAgent.cancelSync();
@@ -77,7 +79,9 @@ Page {
             }
 
             label: formatLabel()
-            description: (model.lastSynchronized == 0) ? qsTr("Not synchronized") : model.lastSynchronized
+            description:
+                 (emailAgent.currentSynchronizingAccountId === mailAccountListModel.accountId(index)) ? qsTr("Synchronizing") :
+                (model.lastSynchronized === 0) ? qsTr("Not synchronized") : model.lastSynchronized
             iconVisible: false
 
             function formatLabel() {
