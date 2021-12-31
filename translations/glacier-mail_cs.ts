@@ -87,17 +87,22 @@
         <translation>Mail</translation>
     </message>
     <message>
-        <location filename="../src/qml/AccountPage.qml" line="53"/>
+        <location filename="../src/qml/AccountPage.qml" line="55"/>
         <source>No accounts configured</source>
         <translation>Není nastavený žádný účet</translation>
     </message>
     <message>
-        <location filename="../src/qml/AccountPage.qml" line="80"/>
+        <location filename="../src/qml/AccountPage.qml" line="83"/>
+        <source>Synchronizing</source>
+        <translation>Synchronizuje se</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/AccountPage.qml" line="84"/>
         <source>Not synchronized</source>
         <translation>Není synchronizováno</translation>
     </message>
     <message>
-        <location filename="../src/qml/AccountPage.qml" line="86"/>
+        <location filename="../src/qml/AccountPage.qml" line="90"/>
         <source>%1 (unread %2)</source>
         <translation>%1 (nepřečteno %2)</translation>
     </message>
@@ -527,27 +532,27 @@
 <context>
     <name>FolderListView</name>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="68"/>
+        <location filename="../src/qml/FolderListView.qml" line="69"/>
         <source>Choose folder:</source>
         <translation>Vyberte složku:</translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="69"/>
+        <location filename="../src/qml/FolderListView.qml" line="70"/>
         <source>Attachments</source>
         <translation>Přílohy</translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="103"/>
+        <location filename="../src/qml/FolderListView.qml" line="104"/>
         <source>No messages in this folder</source>
         <translation>V této složce nejsou žádné emaily</translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="130"/>
+        <location filename="../src/qml/FolderListView.qml" line="131"/>
         <source>Getting more messages</source>
         <translation>Získává se více zpráv</translation>
     </message>
     <message>
-        <location filename="../src/qml/FolderListView.qml" line="132"/>
+        <location filename="../src/qml/FolderListView.qml" line="133"/>
         <source>Get more messages</source>
         <translation>Získat více zpráv</translation>
     </message>
