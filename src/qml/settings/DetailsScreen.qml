@@ -17,13 +17,13 @@ import "settings.js" as Settings
 import Nemo.Dialogs 1.0
 
 Page {
-    id: detalScreen
+    id: detailScreen
     property variant overlay: null
     property var emailAccount
 
     headerTools:  HeaderToolsLayout {
         id: hTools
-        title: qsTr("Account Detals")
+        title: qsTr("Account Details")
         showBackButton: true
     }
 
@@ -38,7 +38,7 @@ Page {
         contentHeight: content.height
         flickableDirection: Flickable.VerticalFlick
         Item {
-            width: detalScreen.width
+            width: detailScreen.width
             Column {
                 id: content
                 anchors.left: parent.left

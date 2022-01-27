@@ -333,7 +333,7 @@
     <name>DetailsScreen</name>
     <message>
         <location filename="../src/qml/settings/DetailsScreen.qml" line="26"/>
-        <source>Account Detals</source>
+        <source>Account Details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
