@@ -331,7 +331,7 @@
     <name>DetailsScreen</name>
     <message>
         <location filename="../src/qml/settings/DetailsScreen.qml" line="26"/>
-        <source>Account Detals</source>
+        <source>Account Details</source>
         <translation>Podrobnosti o účtu</translation>
     </message>
     <message>
