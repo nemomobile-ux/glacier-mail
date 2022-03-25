@@ -47,6 +47,6 @@ int main(int argc, char **argv)
 
     QQuickWindow *window = GlacierApp::showWindow();
     window->setTitle(QObject::tr("Mail"));
-
+    window->setIcon(QIcon("/usr/share/glacier-mail/glacier-mail.png"));
     return app->exec();
 }
