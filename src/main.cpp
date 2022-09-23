@@ -40,12 +40,12 @@
 
 #include <glacierapp.h>
 
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
-    QGuiApplication *app = GlacierApp::app(argc, argv);
+    QGuiApplication* app = GlacierApp::app(argc, argv);
     app->setOrganizationName("NemoMobile");
 
-    QQuickWindow *window = GlacierApp::showWindow();
+    QQuickWindow* window = GlacierApp::showWindow();
     window->setTitle(QObject::tr("Mail"));
     window->setIcon(QIcon("/usr/share/glacier-mail/glacier-mail.png"));
     return app->exec();

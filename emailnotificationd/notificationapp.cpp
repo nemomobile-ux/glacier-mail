@@ -1,7 +1,7 @@
-#include <mnotification.h>
 #include "notificationapp.h"
+#include <mnotification.h>
 
-NotificationApp::NotificationApp(int argc, char **argv)
+NotificationApp::NotificationApp(int argc, char** argv)
     : QCoreApplication(argc, argv)
 {
     mSetting = new MGConfItem("/apps/meego-app-email/newmailnotifications");
@@ -9,14 +9,14 @@ NotificationApp::NotificationApp(int argc, char **argv)
     valueChanged();
 }
 
-void NotificationApp::messagesAdded(const QMailMessageIdList &ids)
+void NotificationApp::messagesAdded(const QMailMessageIdList& ids)
 {
     QMailMessageId id;
     foreach (id, ids) {
-        QMailMessage *message = new QMailMessage(id);
+        QMailMessage* message = new QMailMessage(id);
         QString sender = message->from().toString();
         QString subject = message->subject();
-        MNotification *notification = new MNotification(MNotification::EmailArrivedEvent, sender, subject);
+        MNotification* notification = new MNotification(MNotification::EmailArrivedEvent, sender, subject);
         notification->publish();
         qDebug() << "new email:" << sender << subject;
     }
@@ -24,7 +24,7 @@ void NotificationApp::messagesAdded(const QMailMessageIdList &ids)
 
 void NotificationApp::valueChanged()
 {
-    QMailStore *mailStore = QMailStore::instance();
+    QMailStore* mailStore = QMailStore::instance();
     if (mSetting->value() == true) {
         connect(mailStore, SIGNAL(messagesAdded(const QMailMessageIdList&)), this, SLOT(messagesAdded(const QMailMessageIdList&)));
     } else {
